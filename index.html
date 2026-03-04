@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NeuroHacker: Matrix Brain</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+      body {
+        margin: 0;
+        background-color: #000000;
+        color: #00FF41;
+        font-family: 'Source Code Pro', monospace;
+        overflow: hidden;
+      }
+
+      /* CRT Scanline Effect */
+      .scanlines {
+        background: linear-gradient(
+          to bottom,
+          rgba(255,255,255,0),
+          rgba(255,255,255,0) 50%,
+          rgba(0,0,0,0.2) 50%,
+          rgba(0,0,0,0.2)
+        );
+        background-size: 100% 4px;
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        z-index: 10;
+        pointer-events: none;
+        animation: scanlineScroll 0.5s linear infinite;
+      }
+
+      /* Vignette & Glow */
+      .crt-overlay {
+        background: radial-gradient(circle, rgba(0,255,65,0.03) 0%, rgba(0,0,0,0.4) 80%, rgba(0,0,0,0.9) 100%);
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        z-index: 11;
+        pointer-events: none;
+      }
+
+      @keyframes scanlineScroll {
+        0% { background-position: 0 0; }
+        100% { background-position: 0 4px; }
+      }
+
+      .text-glow {
+        text-shadow: 0 0 5px rgba(0, 255, 65, 0.5), 0 0 10px rgba(0, 255, 65, 0.3);
+      }
+
+      .matrix-scrollbar::-webkit-scrollbar {
+        width: 6px;
+      }
+      .matrix-scrollbar::-webkit-scrollbar-track {
+        background: #001100;
+      }
+      .matrix-scrollbar::-webkit-scrollbar-thumb {
+        background: #00FF41;
+        border: 1px solid #000;
+      }
+    </style>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+    <div class="scanlines"></div>
+    <div class="crt-overlay"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
